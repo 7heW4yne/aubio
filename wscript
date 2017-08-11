@@ -103,7 +103,7 @@ def options(ctx):
 
 def configure(ctx):
     from waflib import Options
-    ctx.load('compiler_c')
+    ctx.load('compiler_c syms')
     ctx.load('waf_unit_test')
     ctx.load('gnu_dirs')
 
