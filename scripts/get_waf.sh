@@ -3,7 +3,7 @@
 set -e
 set -x
 
-WAFURL=https://waf.io/waf-1.9.12
+WAFURL=https://waf.io/waf-1.9.13
 
 ( which wget > /dev/null && wget -qO waf $WAFURL ) || ( which curl > /dev/null && curl $WAFURL > waf )
 
