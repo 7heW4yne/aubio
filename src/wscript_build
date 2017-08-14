@@ -48,10 +48,10 @@ for target in build_features:
     else:
         ctx(features = 'c ' + target,
                 use = uselib,
-				includes = ['.'],
-				source = ctx.path.ant_glob('**/*.c'),
+                includes = ['.'],
+                source = source,
                 target = 'aubiodll',
-				export_symbols_regex = '(new|del|aubio|fvec|fmat|cvec|lvec)_.*',
+                export_symbols_regex = 'new_.*|del_.*|aubio_.*|fvec_.*|fmat_.*|cvec_.*|lvec_.*',
                 vnum = ctx.env['LIB_VERSION'])
 
 # install headers, except _priv.h ones
