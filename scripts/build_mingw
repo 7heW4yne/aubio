@@ -80,7 +80,7 @@ function build_mingw() {
     ./waf distclean configure build install $WAFOPTS_TGT --testcmd='echo %s'
   # fix dll location (see https://github.com/waf-project/waf/issues/1860)
   mv $DESTDIR/lib/libaubiodll-5.dll $DESTDIR/bin
-  mv $PWD/build/src/aubiodll.def $DESTDIR/bin/libaubiodll-5.def
+  mv $DESTDIR/lib/libaubiodll.def $DESTDIR/bin/libaubiodll-5.def
   zip -r $DESTDIR.zip `basename $DESTDIR`
   rm -rf $DESTDIR
   sha256sum $DESTDIR.zip > $DESTDIR.zip.sha256

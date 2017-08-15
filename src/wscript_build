@@ -22,11 +22,11 @@ ctx(features = 'c',
 
 # build libaubio.so (cshlib) and/or libaubio.a (cstlib)
 if ctx.env['DEST_OS'] in ['ios', 'iosimulator']:
-    build_features = ['cstlib', 'cshlib']
+    build_features = ['cstlib', 'cshlib syms']
 elif ctx.env['DEST_OS'] in ['win32', 'win64']:
     build_features = ['cstlib', 'cshlib syms']
 elif ctx.env['DEST_OS'] in ['emscripten']:
-    build_features = ['cstlib','cshlib']
+    build_features = ['cstlib','cshlib syms']
 elif '--static' in ctx.env['LDFLAGS'] or '--static' in ctx.env['LINKFLAGS']:
     # static in cflags, ...
     build_features = ['cstlib']
@@ -53,6 +53,11 @@ for target in build_features:
                 target = 'aubiodll',
                 export_symbols_regex = 'new_.*|del_.*|aubio_.*|fvec_.*|fmat_.*|cvec_.*|lvec_.*',
                 vnum = ctx.env['LIB_VERSION'])
+        # also install the def file to the lib directory
+        ctx.install_as('${LIBDIR}/libaubiodll.def',
+                ['aubiodll.def'],
+                cwd = bld.path.get_bld(),
+                relative_trick=True)
 
 # install headers, except _priv.h ones
 ctx.install_files('${INCLUDEDIR}/aubio/',
