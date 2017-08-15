@@ -50,12 +50,12 @@ for target in build_features:
                 use = uselib,
                 includes = ['.'],
                 source = source,
-                target = 'aubiodll',
+                target = 'aubio',
                 export_symbols_regex = 'new_.*|del_.*|aubio_.*|fvec_.*|fmat_.*|cvec_.*|lvec_.*',
                 vnum = ctx.env['LIB_VERSION'])
         # also install the def file to the lib directory
-        ctx.install_as('${LIBDIR}/libaubiodll.def',
-                ['aubiodll.def'],
+        ctx.install_as('${LIBDIR}/libaubio.def',
+                ['aubio.def'],
                 cwd = bld.path.get_bld(),
                 relative_trick=True)
 
